@@ -1,18 +1,28 @@
-# As a Service Labs Payment Gateway for Woocommerce and WebpayPlus PST
+# Pago Fácil SpA
 
-Este plugin permite la conexión entre la tu eCommerce, la pasarela de pagos y Transbank.
+## Use
+### Requirements
 
-# Como usar : 
-* Descarga la versión Master del repositorio.
-* Registrate y crea tus credenciales en https://www.pagofacil.org/. Debes de tener un código de comercio PST para que esto funcione.
-* Sube tu plugin a Wordpress. Obviamente necesitas Woocommerce andando.
-* Para configruarlo : Woocommerce / Settings / Checkout / WebpayPlus PST para Woocommerce
-* Aquí ingresas las credenciales que creaste anteriormente en el dashboard.
- 
-# ¿ Problemas ? 
+- Woocomerce
+- Have an associated account in [Pago Fácil](https://dashboard.pagofacil.cl/)
 
-* En caso de problemas reportarlos a través de los ISSUES de GITHUB.
-* Puedes ademas preguntar en el foro de desarrollo : https://devel.cl/c/as-a-service-labs/woocommerce-and-webpayplus-pst
+### Installation
 
+- Download the plugin from https://github.com/PSTPAGOFACIL/woocommerce 
+- Go to plugins section and upload the .zip file
 
+**NOTE:** If you are on localhost, you have to add this line to wp-config.php file:
 
+```
+define('FS_METHOD', 'direct');
+
+//This line is added after:
+// define('WP_DEBUG', false);
+
+```
+
+### Configuration
+
+- For configure go to Woocommerce > Settings > Payments > Pago Fácil
+- Set the environment in wich you want to work
+- Add the Token Service and Token Secret that provides Pago Fácil
