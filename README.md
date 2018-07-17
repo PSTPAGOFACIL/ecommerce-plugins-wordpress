@@ -26,3 +26,5 @@ define('FS_METHOD', 'direct');
 - For configure go to Woocommerce > Settings > Payments > Pago Fácil
 - Set the environment in wich you want to work
 - Add the Token Service and Token Secret that provides Pago Fácil
+
+Once these steps are completed, you can use the payment method with Pago Fácil.
