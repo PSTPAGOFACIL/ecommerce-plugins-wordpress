@@ -11,7 +11,7 @@
 - Download the plugin from https://github.com/PSTPAGOFACIL/woocommerce 
 - Go to plugins section and upload the .zip file
 
-**NOTE:** If you are on localhost, you have to add this line to wp-config.php file before upload the plugin:
+**NOTE:** If you are in localhost, you have to add this line to wp-config.php file before upload the plugin:
 
 ```
 define('FS_METHOD', 'direct');
