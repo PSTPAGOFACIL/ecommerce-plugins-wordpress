@@ -5,7 +5,7 @@ namespace tbkaaswoogateway;
 /*
   Plugin Name: Pago Fácil
   Plugin URI:  http://www.pagofacil.cl
-  Description: Pasarela de Pagos para Woocommerce y Transbank usando WebPayPlus Webservices a través de PagoFacil.cl
+  Description: Vende con distintos medios de pago en tu tienda de manera instantánea con Pago Fácil.
   Version:     1.3.1
   Author:      Cristian Tala Sánchez
   Author URI:  http://www.cristiantala.cl
@@ -16,6 +16,7 @@ namespace tbkaaswoogateway;
  */
 
 include_once 'vendor/autoload.php';
+use WC_Order;
 
 use tbkaaswoogateway\classes\WC_Gateway_TBKAAS;
 
@@ -45,12 +46,13 @@ add_filter('woocommerce_payment_gateways', 'tbkaaswoogateway\add_your_gateway_cl
 function custom_meta_box_markup($post)
 {
     $order_id = $post->ID;
+  
     $codigoAuth = get_post_meta($order_id, "_gateway_reference", true);
     if ($codigoAuth!="") {
         include(plugin_dir_path(__FILE__) . '/templates/order_recibida.php');
     } else {
         echo "<p>";
-        echo "No existe información relacionada al pedido.";
+        echo "No existe información relacionada al pedidoa.";
         echo "</p>";
     }
 }

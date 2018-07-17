@@ -54,7 +54,6 @@ class WC_Gateway_TBKAAS extends \WC_Payment_Gateway
         $this->method_title = 'Pago Fácil';
         $this->notify_url = WC()->api_request_url('WC_Gateway_TBKAAS');
 
-
         // Load the settings.
         $this->init_form_fields();
         $this->init_settings();
@@ -62,12 +61,9 @@ class WC_Gateway_TBKAAS extends \WC_Payment_Gateway
         $this->title = $this->get_option('title');
         $this->description = $this->get_option('description');
 
-        $modo_desarrollo = $this->get_option('desarrollo');
-        if ($modo_desarrollo === "yes") {
-            $this->environment = 'DESARROLLO';
-        } else {
-            $this->environment = 'PRODUCCION';
-        }
+        //$modo_desarrollo = $this->get_option('desarrollo');
+        //$ambiente = $this->get_option('ambiente');
+        $this->environment = $this->get_option('ambiente');
 
         $this->token_service = $this->get_option('token_service');
         $this->token_secret = $this->get_option('token_secret');
@@ -89,11 +85,16 @@ class WC_Gateway_TBKAAS extends \WC_Payment_Gateway
                 'label' => __('Habilita PagoFácil', 'woocommerce'),
                 'default' => 'yes'
             ),
-            'desarrollo' => array(
-                'title' => __('Enable/Disable', 'woocommerce'),
-                'type' => 'checkbox',
+            'ambiente' => array(
+                'title' => __('Ambiente', 'woocommerce'),
+                'type' => 'select',
                 'label' => __('Habilita el modo de pruebas', 'woocommerce'),
-                'default' => 'no'
+                'default' => 'no',
+                'options' => array(
+                  'DESARROLLO' => 'Desarrollo',
+                  'BETA' => 'Beta',
+                  'PRODUCCION' => 'Producción'
+                )
             ),
             'title' => array(
                 'title' => __('Title', 'woocommerce'),
@@ -124,19 +125,7 @@ class WC_Gateway_TBKAAS extends \WC_Payment_Gateway
                 'type' => 'checkbox',
                 'label' => __('Si / No'),
                 'default' => 'yes'
-            ),
-            'trade_name' => array(
-                'title' => __('Nombre del Comercio', 'woocommerce'),
-                'type' => 'text',
-                'description' => __('Trade Name like : EmpresasCTM', 'woocommerce'),
-                'default' => __('EmpresasCTM', 'woocommerce')
-            ),
-            'url_commerce' => array(
-                'title' => __('URL Comercio', 'woocommerce'),
-                'type' => 'text',
-                'description' => __('Url Commerce like : http://www.empresasctm.cl', 'woocommerce'),
-                'default' => __('http://www.empresasctm.cl', 'woocommerce')
-            ),
+            )
         );
     }
 
@@ -179,19 +168,15 @@ class WC_Gateway_TBKAAS extends \WC_Payment_Gateway
             Logger::log_me_wp("Doble Validación Desactivada / " . $order->get_status(), $sufijo);
         }
 
-        echo '<p>' . __('Gracias! - Tu orden ahora está pendiente de pago. Deberías ser redirigido automáticamente a la página de transbank.') . '</p>';
+        echo '<p>' . __('Gracias! - Tu orden ahora está pendiente de pago. Deberías ser redirigido automáticamente a Pago Fácil.') . '</p>';
         echo $this->generate_TBKAAS_form($order_id);
     }
 
     public function generate_TBKAAS_form($order_id)
     {
-
-        // Logger::log_me_wp($formPostAddress);
-
         $SUFIJO = "[WEBPAY - FORM]";
 
         $order = new WC_Order($order_id);
-
 
         /*
          * Este es el token que representará la transaccion.
@@ -221,15 +206,13 @@ class WC_Gateway_TBKAAS extends \WC_Payment_Gateway
 
         $request->account_id = $this->token_service;
         $request->amount = round($monto);
-        // $request->currency = $currency->iso_code;
-        $request->currency = 'CLP';
+        $request->currency = get_woocommerce_currency();
         $request->reference = $order_id;
         $request->customer_email =  $email;
         $request->url_complete = $this->notify_url.'?complete';
         $request->url_cancel = $this->notify_url;
         $request->url_callback =  $this->notify_url.'?callback';
-        // $request->shop_country =  Context::getContext()->language->iso_code;
-        $request->shop_country =  'CL';
+        $request->shop_country =  $order->get_shipping_country();
         $request->session_id = date('Ymdhis').rand(0, 9).rand(0, 9).rand(0, 9);
 
         $transaction = new Transaction($request);
@@ -255,6 +238,8 @@ class WC_Gateway_TBKAAS extends \WC_Payment_Gateway
             /*
              * Revisamos si es callback
              */
+
+
             $esCallback = !empty($_GET["callback"]);
             if ($esCallback) {
                 $this->procesarCallback($_POST);
@@ -272,7 +257,7 @@ class WC_Gateway_TBKAAS extends \WC_Payment_Gateway
         Logger::log_me_wp("Entrando a Pedido Recibido de $order_id");
         $order = new WC_Order($order_id);
 
-        if ($order->get_status() === 'processing' || $order->get_status() === 'complete') {
+        if ($order->get_status() === 'processing' || $order->get_status() === 'completed') {
             include(plugin_dir_path(__FILE__) . '../templates/order_recibida.php');
         } else {
             $order_id_mall = get_post_meta($order_id, "_reference", true);
@@ -288,7 +273,6 @@ class WC_Gateway_TBKAAS extends \WC_Payment_Gateway
         $order_id_mall = $response["x_gateway_reference"];
         $order_estado = $response["x_result"];
 
-
         Logger::log_me_wp("ORDER _id = $order_id");
         Logger::log_me_wp("ORDER _estado = $order_estado");
 
@@ -299,7 +283,6 @@ class WC_Gateway_TBKAAS extends \WC_Payment_Gateway
         if (!($order)) {
             return;
         }
-
 
         //Revisamos si ya está completada, si lo está no hacemos nada.
 
@@ -329,7 +312,6 @@ class WC_Gateway_TBKAAS extends \WC_Payment_Gateway
             if ($return) {
                 $http_helper->my_http_response_code(404);
             }
-
             return;
         }
 
@@ -368,18 +350,25 @@ class WC_Gateway_TBKAAS extends \WC_Payment_Gateway
             $ct_estado = $response['x_result'];
             Logger::log_me_wp("ESTADO DE LA ORDEN : $ct_estado");
 
+            error_log("Estado de compra $ct_estado");
+            Logger::log_me_wp("Estado de compra $ct_estado");
             if ($ct_estado == "completed") {
                 //Marcar Completa
-                $order->payment_complete();
+
+                // $order->payment_complete();
+                $order->update_status('completed');
 
                 $response_data = $this->generateResponse($response);
                 //Agregar Meta
                 $this->addMetaFromResponse($response_data, $order_id);
                 Logger::log_me_wp("Orden $order_id marcada completa");
+                error_log("Orden $order_id marcada completa");
                 if ($return) {
                     $http_helper->my_http_response_code(200);
                 }
             } else {
+                error_log("Orden $order_id no completa");
+                Logger::log_me_wp("Orden no completa");
                 $order->update_status('failed', "El pago del pedido no fue exitoso.");
                 add_post_meta($order_id, '_reference', $response->reference, true);
                 add_post_meta($order_id, '_gateway_reference', $response->gateway_reference, true);
@@ -389,6 +378,7 @@ class WC_Gateway_TBKAAS extends \WC_Payment_Gateway
             }
         } else {
             Logger::log_me_wp("Firmas NO Corresponden");
+            $order->update_status('failed', "El pago del pedido no fue exitoso.");
             if ($return) {
                 $http_helper->my_http_response_code(400);
             }
@@ -405,7 +395,6 @@ class WC_Gateway_TBKAAS extends \WC_Payment_Gateway
         add_post_meta($order_id, '_test', $response->test, true);
         add_post_meta($order_id, '_timestamp', $response->timestamp, true);
     }
-
 
     private function generateResponse($data)
     {
