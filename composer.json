@@ -1,0 +1,24 @@
+{
+    "name": "PagoFácil - WebpayPlus Woocommerce",
+    "description": "DESCRIPCION A DEFINIR",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Cristian Tala S.",
+            "email": "yomismo@cristiantala.cl"
+        }
+    ],
+ 
+    "require": {
+        "php": ">=5.4.0",
+        "ctala/transaccion-default": "*",
+        "pagofacil/php-sdk": "^0.1.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "tbkaaswoogateway\\classes\\": "classes/",
+            "tbkaaswoogateway\\helpers\\": "helpers/"
+        }
+
+    }
+}
