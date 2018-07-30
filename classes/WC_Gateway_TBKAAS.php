@@ -201,6 +201,7 @@ class WC_Gateway_TBKAAS extends \WC_Payment_Gateway
 
         $monto = round($order->get_total());
         $email = $order->get_billing_email();
+        $shop_country = !empty($order->get_shipping_country()) ? $order->get_shipping_country() : $order->get_billing_country();
 
         $request = new Request();
 
@@ -212,7 +213,7 @@ class WC_Gateway_TBKAAS extends \WC_Payment_Gateway
         $request->url_complete = $this->notify_url.'?complete';
         $request->url_cancel = $this->notify_url;
         $request->url_callback =  $this->notify_url.'?callback';
-        $request->shop_country =  $order->get_shipping_country();
+        $request->shop_country = !empty($shop_country) ? $shop_country : 'CL';
         $request->session_id = date('Ymdhis').rand(0, 9).rand(0, 9).rand(0, 9);
 
         $transaction = new Transaction($request);
