@@ -201,7 +201,7 @@ class WC_Gateway_TBKAAS extends \WC_Payment_Gateway
 
         $monto = round($order->get_total());
         $email = $order->get_billing_email();
-        $shop_country = !empty($order->get_shipping_country()) ? $order->get_shipping_country() : $order->get_billing_country();
+        $shop_country = $order->get_billing_country();
 
         $request = new Request();
 
