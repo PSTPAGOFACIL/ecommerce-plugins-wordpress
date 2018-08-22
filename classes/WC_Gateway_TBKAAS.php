@@ -100,7 +100,7 @@ class WC_Gateway_TBKAAS extends \WC_Payment_Gateway
                 'title' => __('Title', 'woocommerce'),
                 'type' => 'text',
                 'description' => __('', 'woocommerce'),
-                'default' => __('Pago Fácil', 'woocommerce')
+                'default' => __('Pago Fácil ( Transbank + Khipu + MultiCaja + Pago46)', 'woocommerce')
             ),
             'description' => array(
                 'title' => __('Customer Message', 'woocommerce'),
