@@ -1,14 +1,14 @@
-=== PagoFácil.org - WebpayPlus PST para Woocommerce ===
+=== Pago Fácil SpA - Múltiples medios de pagos en tu eCommerce ===
 Contributors: ctala
 Donate link: http://cristiantala.cl/
 Tags: ecommerce, payments
 Requires at least: 3.0.1
-Tested up to: 4.7
-Stable tag: V1.3.0
+Tested up to: 4.9.8
+Stable tag: V1.4.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-This plugin allows the connection between the Chilean payment gateway through PagoFacil.org.
+This plugin allows the connection between the Chilean payment gateways and your eCommerce through Pago Fácil.
 
 == Description ==
 

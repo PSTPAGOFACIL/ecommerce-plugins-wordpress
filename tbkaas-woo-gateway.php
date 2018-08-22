@@ -6,7 +6,7 @@ namespace tbkaaswoogateway;
   Plugin Name: Pago Fácil
   Plugin URI:  http://www.pagofacil.cl
   Description: Vende con distintos medios de pago en tu tienda de manera instantánea con Pago Fácil.
-  Version:     1.3.1
+  Version:     1.4.0
   Author:      Cristian Tala Sánchez
   Author URI:  http://www.cristiantala.cl
   License:     MIT
