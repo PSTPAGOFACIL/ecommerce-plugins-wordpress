@@ -356,8 +356,8 @@ class WC_Gateway_TBKAAS extends \WC_Payment_Gateway
             if ($ct_estado == "completed") {
                 //Marcar Completa
 
-                // $order->payment_complete();
-                $order->update_status('completed');
+                 $order->payment_complete();
+                //$order->update_status('completed');
 
                 $response_data = $this->generateResponse($response);
                 //Agregar Meta
