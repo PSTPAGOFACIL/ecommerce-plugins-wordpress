@@ -89,11 +89,11 @@ class WC_Gateway_TBKAAS extends \WC_Payment_Gateway
                 'title' => __('Ambiente', 'woocommerce'),
                 'type' => 'select',
                 'label' => __('Habilita el modo de pruebas', 'woocommerce'),
-                'default' => 'no',
+                'default' => 'PRODUCCION',
                 'options' => array(
+                  'PRODUCCION' => 'Producción',
                   'DESARROLLO' => 'Desarrollo',
-                  'BETA' => 'Beta',
-                  'PRODUCCION' => 'Producción'
+                  'BETA' => 'Beta'
                 )
             ),
             'title' => array(
