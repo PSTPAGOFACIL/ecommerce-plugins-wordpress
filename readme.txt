@@ -4,7 +4,7 @@ Donate link: http://cristiantala.cl/
 Tags: ecommerce, payments
 Requires at least: 3.0.1
 Tested up to: 4.9.8
-Stable tag: V1.4.1
+Stable tag: V1.4.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -35,6 +35,10 @@ An answer to that question.
 
 == Changelog ==
 
+
+= 1.4.2 =
+* Set default production environment.
+* Set default to processing after payment.
 
 = 1.4.1 =
 * New Server with multiple payment methods.
