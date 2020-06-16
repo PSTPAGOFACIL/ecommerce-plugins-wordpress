@@ -1,0 +1,29 @@
+{
+    "name": "pago-facil/woocommerce-pago-facil",
+    "description": "DESCRIPCION A DEFINIR",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Cristian Tala S.",
+            "email": "yomismo@cristiantala.cl"
+        }
+    ],
+    "repositories": [
+        {
+            "type": "vcs",
+            "url":  "git@github.com:PSTPAGOFACIL/pagofacil-core-php.git"
+        }
+    ],
+    "require": {
+        "php": ">=5.4.0",
+        "pstpagofacil/pagofacil-core-php": "dev-master" 
+        },
+    
+    "autoload": {
+        "psr-4": {
+            "wcpagofacilgateway\\classes\\": "classes/",
+            "wcpagofacilgateway\\helpers\\": "helpers/"
+        }
+
+    }
+}
