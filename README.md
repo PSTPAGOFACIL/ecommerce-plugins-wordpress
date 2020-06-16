@@ -1,30 +1,30 @@
 # Pago Fácil SpA
 
-## Use
-### Requirements
+## Uso
+### Requerimientos
 
-- Woocomerce
-- Have an associated account in [Pago Fácil](https://dashboard.pagofacil.cl/)
+- Instalar Woocommerce .
+- Crear una cuenta en [Pago Fácil] (https://dashboard.pagofacil.cl/).
 
-### Installation
+### Instalación
 
-- Download the plugin from https://github.com/PSTPAGOFACIL/woocommerce 
-- Go to plugins section and upload the .zip file
+- Descargar el plugin autocontenido desde https://cl.wordpress.org/plugins/webpayplus-pst/.
 
-**NOTE:** If you are in localhost, you have to add this line to wp-config.php file before upload the plugin:
+**NOTA:** En el caso de estar trabajando como localhost , agregar la siguiente linea en wp-config.php:
 
 ```
 define('FS_METHOD', 'direct');
 
-//This line is added after:
+//Agregar esta linea después de:
 // define('WP_DEBUG', false);
 
 ```
+- Instalar el plugin en Wordpress y activarlo.
 
-### Configuration
+### Configuración
 
-- For configure go to Woocommerce > Settings > Payments > Pago Fácil
-- Set the environment in wich you want to work
-- Add the Token Service and Token Secret that provides Pago Fácil
+- Para configurar Woocommerce , ir a Ajustes (de Woocommerce) > Pagos > Pago Fácil > Gestionar.
+- Elegir el ambiente a trabajar (desarrollo o producción).
+- Agregar el Service Token y el Secret Token, que se obtienen en el dashboard de Pago Fácil (correspondiente al ambiente seleccionado)
 
-Once these steps are completed, you can use the payment method with Pago Fácil.
+Una vez completados estos pasos , usted puede usar Pago Fácil para recibir pagos.

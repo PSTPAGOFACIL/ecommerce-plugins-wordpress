@@ -6,7 +6,7 @@
  * @author ctala
  */
 
-namespace tbkaaswoogateway\classes;
+namespace wcpagofacilgateway\classes;
 
 class Logger {
     
