@@ -29,7 +29,7 @@ class ComposerStaticInit2db83776479daf3ad10c0176ca869a9c
         ),
         'PagoFacilCore\\' => 
         array (
-            0 => __DIR__ . '/..' . '/kdu/pagofacilcore/src',
+            0 => __DIR__ . '/..' . '/pstpagofacil/pagofacil-core-php/src',
         ),
     );
 

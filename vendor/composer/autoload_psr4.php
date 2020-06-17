@@ -8,5 +8,5 @@ $baseDir = dirname($vendorDir);
 return array(
     'wcpagofacilgateway\\helpers\\' => array($baseDir . '/helpers'),
     'wcpagofacilgateway\\classes\\' => array($baseDir . '/classes'),
-    'PagoFacilCore\\' => array($vendorDir . '/kdu/pagofacilcore/src'),
+    'PagoFacilCore\\' => array($vendorDir . '/pstpagofacil/pagofacil-core-php/src'),
 );
