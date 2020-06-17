@@ -24,7 +24,7 @@
  * THE SOFTWARE.
  */
 
-namespace tbkaaswoogateway\classes;
+namespace wcpagofacilgateway\classes;
 
 /**
  * Description of HTTPHelper

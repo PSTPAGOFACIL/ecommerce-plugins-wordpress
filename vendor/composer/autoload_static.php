@@ -4,48 +4,40 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInit119bd6ab147b3fbc112a53a5d852e51a
+class ComposerStaticInit2db83776479daf3ad10c0176ca869a9c
 {
     public static $prefixLengthsPsr4 = array (
-        't' => 
+        'w' => 
         array (
-            'tbkaaswoogateway\\helpers\\' => 25,
-            'tbkaaswoogateway\\classes\\' => 25,
-        ),
-        'c' => 
-        array (
-            'ctala\\transaccion\\' => 18,
+            'wcpagofacilgateway\\helpers\\' => 27,
+            'wcpagofacilgateway\\classes\\' => 27,
         ),
         'P' => 
         array (
-            'PagoFacil\\lib\\' => 14,
+            'PagoFacilCore\\' => 14,
         ),
     );
 
     public static $prefixDirsPsr4 = array (
-        'tbkaaswoogateway\\helpers\\' => 
+        'wcpagofacilgateway\\helpers\\' => 
         array (
             0 => __DIR__ . '/../..' . '/helpers',
         ),
-        'tbkaaswoogateway\\classes\\' => 
+        'wcpagofacilgateway\\classes\\' => 
         array (
             0 => __DIR__ . '/../..' . '/classes',
         ),
-        'ctala\\transaccion\\' => 
+        'PagoFacilCore\\' => 
         array (
-            0 => __DIR__ . '/..' . '/ctala/transaccion-default',
-        ),
-        'PagoFacil\\lib\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/pagofacil/php-sdk/classes',
+            0 => __DIR__ . '/..' . '/kdu/pagofacilcore/src',
         ),
     );
 
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInit119bd6ab147b3fbc112a53a5d852e51a::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInit119bd6ab147b3fbc112a53a5d852e51a::$prefixDirsPsr4;
+            $loader->prefixLengthsPsr4 = ComposerStaticInit2db83776479daf3ad10c0176ca869a9c::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInit2db83776479daf3ad10c0176ca869a9c::$prefixDirsPsr4;
 
         }, null, ClassLoader::class);
     }
