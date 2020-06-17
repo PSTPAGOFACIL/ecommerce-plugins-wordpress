@@ -8,12 +8,6 @@
             "email": "yomismo@cristiantala.cl"
         }
     ],
-    "repositories": [
-        {
-            "type": "vcs",
-            "url":  "git@github.com:PSTPAGOFACIL/pagofacil-core-php.git"
-        }
-    ],
     "require": {
         "php": ">=5.4.0",
         "pstpagofacil/pagofacil-core-php": "dev-master" 
