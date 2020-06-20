@@ -132,7 +132,7 @@ class WC_Pagofacil_Gateway extends \WC_Payment_Gateway
      */
     public function get_icon_opt($opt)
     {
-        $icon = $opt['url_imagen'] ? '<img src="' . $opt['url_imagen'] . '" alt="' . esc_attr($opt['nombre']) . '" />' : '';
+        $icon = $opt['url_imagen'] ? '<img src="' . $opt['url_imagen'] . '" width="24" alt="' . esc_attr($opt['nombre']) . '" />' : '';
         return apply_filters('woocommerce_gateway_icon', $icon, $opt['codigo']);
     }
 
