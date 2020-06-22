@@ -1,5 +1,5 @@
 {
-    "name": "PagoFácil - WebpayPlus Woocommerce",
+    "name": "pago-facil/woocommerce-pago-facil",
     "description": "DESCRIPCION A DEFINIR",
     "license": "MIT",
     "authors": [
@@ -8,16 +8,21 @@
             "email": "yomismo@cristiantala.cl"
         }
     ],
- 
+    "repositories": [
+        {
+            "type": "vcs",
+            "url":  "git@github.com:PSTPAGOFACIL/pagofacil-core-php.git"
+        }
+    ],
     "require": {
         "php": ">=5.4.0",
-        "ctala/transaccion-default": "*",
-        "pagofacil/php-sdk": "^0.1.0"
-    },
+        "pstpagofacil/pagofacil-core-php": "dev-master" 
+        },
+    
     "autoload": {
         "psr-4": {
-            "tbkaaswoogateway\\classes\\": "classes/",
-            "tbkaaswoogateway\\helpers\\": "helpers/"
+            "wcpagofacilgateway\\classes\\": "classes/",
+            "wcpagofacilgateway\\helpers\\": "helpers/"
         }
 
     }
